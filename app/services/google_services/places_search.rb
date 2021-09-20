@@ -9,9 +9,10 @@ module GoogleServices
 
     $MAX_RETRIES = 5
     $API_KEY = "AIzaSyD96aOje6CXjw18dHjIzBenm1ZcurKvRNA"
+    $DEFAULT_SEARCH_PARAMS = { type: "restaurant" }
     
     def initialize(search_params, include_photo_links = true)
-      @search_params = search_params
+      @search_params = $DEFAULT_SEARCH_PARAMS.merge(search_params)
       @include_photo_links = include_photo_links
     end
 
@@ -55,10 +56,10 @@ module GoogleServices
 
     end
 
-    def add_photo_urls_to_results(results,maxwidth = 400)
+    def add_photo_urls_to_results(results, maxwidth = 400)
       results.each do |r| 
         r["photos"].each do |p| 
-          p["photo_url"] = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{400}&photo_reference=#{p["photo_reference"]}&key=#{ENV['APPSIGNAL_API_KEY']}" 
+          p["photo_url"] = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{400}&photo_reference=#{p["photo_reference"]}&key=#{api_key}" 
         end
       end
     end
@@ -66,7 +67,7 @@ module GoogleServices
     private
 
       def api_key
-        ENV['APPSIGNAL_API_KEY'] || $API_KEY 
+        ENV['GOOGLE_API_KEY'] || $API_KEY 
       end
       
 

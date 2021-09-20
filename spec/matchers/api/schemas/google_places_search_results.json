@@ -1,0 +1,51 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "geometry",
+      "name",
+      "place_id"
+    ],
+    "properties": {
+      "geometry": {
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "properties": {
+          "location": {
+            "type": "object",
+            "required": [
+              "lat",
+              "lng"
+            ],
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "lng": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "name": {
+        "type": "string"
+      },
+      "place_id": {
+        "type": "string"
+      },
+      "price_level": {
+        "type": "number"
+      },
+      "rating": {
+        "type": "number"
+      },
+      "user_ratings_total": {
+        "type": "number"
+      }
+    }
+  }
+}

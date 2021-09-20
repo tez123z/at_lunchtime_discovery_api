@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
 
-  get 'search' => 'google_places#search'
+  post 'search' => 'google_places#search'
 
 end
