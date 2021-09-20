@@ -32,6 +32,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   gem "rubocop"
+  gem "json-schema"
 end
 
 group :development do
