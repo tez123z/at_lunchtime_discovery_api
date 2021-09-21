@@ -5,7 +5,7 @@ module GoogleSerializer
         @resource = resource
         @include_photo_urls = options[:include_photo_urls] || false
         @include_favorites = options[:include_favorites] || false
-        @user = options[:current_user] || nil
+        @user_id = options[:user_id] && options[:user_id] || nil
     end
 
     def to_hash
@@ -27,7 +27,7 @@ module GoogleSerializer
     def hash_for_one_place(record = nil)
       serializable_hash = record || @resource
       GoogleSerializer::Photos.add_urls(serializable_hash) if @include_photo_urls
-      GoogleSerializer::Favorite.favorited?(serializable_hash, @user) if @include_favorites && @user
+      serializable_hash["favorited"] = GoogleSerializer::Favorite.favorited?(serializable_hash, @user_id) if @include_favorites && @user_id
       serializable_hash
     end
 

@@ -10,7 +10,7 @@ class GooglePlacesController < ApplicationController
       
       serialized_results = GoogleSerializer::Place.new(result.payload,{
         include_photo_urls:true,
-        user:current_user,
+        user_id:current_user.id,
         include_favorites:true
       })
 
