@@ -1,4 +1,6 @@
-$GOOGLE_SUPPORTED_LANGUAGE_CODES = [
+GOOGLE_API_KEY = "AIzaSyD96aOje6CXjw18dHjIzBenm1ZcurKvRNA"
+
+GOOGLE_SUPPORTED_LANGUAGE_CODES = [
   'af',	'ja', 'sq',	'kn', 'am',	'kk',
   'ar',	'km', 'hy',	'ko', 'az',	'ky',
   'eu',	'lo', 'be',	'lv', 'bn',	'lt',
@@ -14,7 +16,7 @@ $GOOGLE_SUPPORTED_LANGUAGE_CODES = [
   'uz',	'is',	'vi','id', 'zu',	'it'	
 ]
 
-$GOOGLE_PLACE_TYPES = [
+GOOGLE_PLACE_TYPES = [
   'accounting',
   'airport',
   'amusement_park',

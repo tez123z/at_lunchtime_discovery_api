@@ -47,3 +47,5 @@ gem "devise-jwt"
 gem "devise"
 
 gem "rails_param", "0.11.1"
+
+gem "jsonapi-serializer", "~> 2.2"
