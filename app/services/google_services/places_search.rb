@@ -69,7 +69,7 @@ module GoogleServices
       def api_key
         ENV['GOOGLE_API_KEY'] || $API_KEY 
       end
-      
 
   end
+  
 end

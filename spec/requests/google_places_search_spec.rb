@@ -7,9 +7,7 @@ RSpec.describe 'POST /search', type: :request do
     headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
     Devise::JWT::TestHelpers.auth_headers(headers, user)
   }
-  let(:invalid_headers) {
-    { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
-  }
+
   let(:url) { '/search' }
   let(:valid_params) do
     {

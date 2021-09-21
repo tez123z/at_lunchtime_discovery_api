@@ -5,5 +5,7 @@ class User < ApplicationRecord
           :registerable,
           :jwt_authenticatable, 
           jwt_revocation_strategy: DenyList
-          
+
+  has_many :favorite_places
+
 end

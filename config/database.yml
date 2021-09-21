@@ -60,6 +60,9 @@ development:
 test:
   <<: *default
   database: at_lunchtime_discovery_api_test
+  username: <%= ENV['DBUSER'] %>
+  password: <%= ENV['DBPASS'] %>
+  host: <%= ENV['DBHOST'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,5 +87,6 @@ test:
 production:
   <<: *default
   database: at_lunchtime_discovery_api_production
-  username: at_lunchtime_discovery_api
-  password: <%= ENV['AT_LUNCHTIME_DISCOVERY_API_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DBUSER'] %>
+  password: <%= ENV['DBPASS'] %>
+  host: <%= ENV['DBHOST'] %>

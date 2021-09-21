@@ -20,7 +20,7 @@ services:
         ports:
             - 5432:5432
         environment:
-            POSTGRES_DB: at_lunchtime_discovery_api_development
+            POSTGRES_DB: at_lunchtime_discovery_api
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
         volumes:

@@ -7,6 +7,7 @@ class GooglePlacesController < ApplicationController
     result = GoogleServices::PlacesSearch.call(search_params)
 
     if result.success?
+      favorite_places = current_user.favorite_places.where(place_id:result.payload.map{|r| r["place_id"] })
       render json: result.payload, status: :ok
     else
       render json:{errors:result.errors}, status: :unprocessable_entity
