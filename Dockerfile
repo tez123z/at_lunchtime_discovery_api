@@ -11,8 +11,9 @@ RUN bundle install
 
 COPY . .
 
-RUN ["chmod", "+x", "./entrypoint.sh"]
-ENTRYPOINT ["./entrypoint.sh"]
+RUN ["chmod", "+x", "./docker/startup.sh"]
+RUN ["chmod", "+x", "./docker/prepare-db.sh"]
+ENTRYPOINT ["./docker/startup.sh"]
 EXPOSE 3000
 
 # Start the main process.
