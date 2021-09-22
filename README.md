@@ -41,11 +41,11 @@ Tests included via rspec and ThunderClient:
 
 VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection/environment can be found here [/thunder_client](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client).
 
-- download collection.json and environment.json
-- install Thunder Client
-- import collection under "Collections" tab and Enviroment under " of ThunderClient.
-- run requests using "Run All"
+- Download collection.json and environment.json
+- Install Thunder Client
+- Import collection under "Collections" tab and Enviroment under "Env" tab of ThunderClient.
+- Run collection requests using "Run All"
 
-_PS. you can create your own environment too. Environment required to store and pass variables between requests._
+_PS. You can create/use your own environment too. Environment required to store and pass variables between requests._
 
 [View Video Walkthrough HERE](https://share.getcloudapp.com/6quYn0Dl)
