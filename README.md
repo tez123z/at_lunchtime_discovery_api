@@ -43,7 +43,7 @@ VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection/envi
 
 - Download collection.json and environment.json
 - Install Thunder Client
-- Import collection under "Collections" tab and Enviroment under "Env" tab of ThunderClient.
+- Import collection under "Collections" tab and Environment under "Env" tab of ThunderClient.
 - Run collection requests using "Run All"
 
 _PS. You can create/use your own environment too. Environment required to store and pass variables between requests._
