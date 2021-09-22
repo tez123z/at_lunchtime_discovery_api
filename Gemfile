@@ -48,6 +48,4 @@ gem "devise"
 
 gem "rails_param", "0.11.1"
 
-gem "jsonapi-serializer", "~> 2.2"
-
 gem "oj", "~> 3.13"
