@@ -40,7 +40,7 @@ class GooglePlacesController < ApplicationController
 
     def search_params
 
-      params.permit(
+      params.require(:google_place).permit(
         :query,
         :language,
         :location,

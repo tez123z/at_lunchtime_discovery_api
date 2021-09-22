@@ -26,12 +26,12 @@ RSpec.describe "/favorite_places", type: :request do
 
   let(:google_place) {
     
-    result = GoogleServices::PlacesSearch.call({
+    result = GoogleServices::Place::TextSearch.call({
       query: "Burgers",
       location: "34.885253490,-82.4170214515"
     })
 
-    result.payload[0]
+    result.payload[rand(0..result.payload.length - 1)]
 
   }
 
@@ -99,46 +99,13 @@ RSpec.describe "/favorite_places", type: :request do
     end
   end
 
-  # describe "PATCH /update" do
-  #   context "with valid parameters" do
-  #     let(:new_attributes) {
-  #       skip("Add a hash of attributes valid for your model")
-  #     }
+  describe "DELETE /destroy" do
+    it "destroys the requested favorite_place" do
+      favorite_place = FavoritePlace.create! valid_attributes
+      expect {
+        delete favorite_place_url(favorite_place), headers: valid_headers, as: :json
+      }.to change(FavoritePlace, :count).by(-1)
+    end
+  end
 
-  #     it "updates the requested favorite_place" do
-  #       favorite_place = FavoritePlace.create! valid_attributes
-  #       patch favorite_place_url(favorite_place),
-  #             params: { favorite_place: new_attributes }, headers: valid_headers, as: :json
-  #       favorite_place.reload
-  #       skip("Add assertions for updated state")
-  #     end
-
-  #     it "renders a JSON response with the favorite_place" do
-  #       favorite_place = FavoritePlace.create! valid_attributes
-  #       patch favorite_place_url(favorite_place),
-  #             params: { favorite_place: new_attributes }, headers: valid_headers, as: :json
-  #       expect(response).to have_http_status(:ok)
-  #       expect(response.content_type).to match(a_string_including("application/json"))
-  #     end
-  #   end
-
-  #   context "with invalid parameters" do
-  #     it "renders a JSON response with errors for the favorite_place" do
-  #       favorite_place = FavoritePlace.create! valid_attributes
-  #       patch favorite_place_url(favorite_place),
-  #             params: { favorite_place: invalid_attributes }, headers: valid_headers, as: :json
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #       expect(response.content_type).to eq("application/json")
-  #     end
-  #   end
-  # end
-
-  # describe "DELETE /destroy" do
-  #   it "destroys the requested favorite_place" do
-  #     favorite_place = FavoritePlace.create! valid_attributes
-  #     expect {
-  #       delete favorite_place_url(favorite_place), headers: valid_headers, as: :json
-  #     }.to change(FavoritePlace, :count).by(-1)
-  #   end
-  # end
 end

@@ -3,15 +3,12 @@ require "net/http"
 require "oj"
 
 class ApiService < ApplicationService
-      
+      attr_reader :response
+
       include HttpStatusCodes
       include ApiExceptions
 
       private
-
-      def response
-        @response
-      end
       
       def request(http_method:, url:, payload: {})
         

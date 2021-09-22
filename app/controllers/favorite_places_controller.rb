@@ -27,11 +27,7 @@ class FavoritePlacesController < ApplicationController
 
   # PATCH/PUT /favorite_places/1
   def update
-    if @favorite_place.update(favorite_place_params)
-      render json: @favorite_place
-    else
-      render json: @favorite_place.errors, status: :unprocessable_entity
-    end
+    render json: @favorite_place
   end
 
   # DELETE /favorite_places/1
