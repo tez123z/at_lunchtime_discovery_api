@@ -39,4 +39,5 @@ Tests included via rspec and ThunderClient:
   docker-compose run app bundle exec rspec
 ```
 
-VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection can be found here [thunder_client/collection.json](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client/collection.json). Simply download install client and import under "Collections" tab of ThunderClient.
+VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection can be found here [thunder_client/collection.json](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client/collection.json).
+Simply download collection, install client and import collection under "Collections" tab of ThunderClient.
