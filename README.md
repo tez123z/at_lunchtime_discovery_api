@@ -1,8 +1,8 @@
 # AllTrails-LunchtimeDiscoveryAPI
 
-Rails 6.1 application makink it easy for the AllTrails team to find a great place to eat lunch by building a restaurant discovery API.
+Rails 6.1 application making it easy for the AllTrails team to find a great place to eat lunch.
 
-This API will wrap the Google Places API to return places to eat for lunch that may be used by other applications for presentation.
+This API wraps the Google Places API to return places to eat for lunch that may be used by other applications for presentation.
 
 ## Features
 
@@ -17,7 +17,6 @@ This stack is divided into two different containers:
 - **worker:** Background processing. It contains the same Rails code, but only runs Sidekiq
 - **postgresql:** PostgreSQL database
 - **redis:** In-memory key/value store (used by Sidekiq, ActionCable and for caching)
-- **backup:** Regularly backups the database as a dump via CRON to an Amazon S3 bucket
 
 ## Ok, Let's Go!
 
@@ -34,10 +33,10 @@ Enjoy!
 
 ## Tests
 
-Tests included via rspec:
+Tests included via rspec and ThunderClient:
 
 ```bash
   docker-compose run app bundle exec rspec
 ```
 
-[ThunderClient](https://www.thunderclient.io/) VS Code collection can also be found **thunder_client/collection.json**
+VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection can be found here [thunder_client/collection.json](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client/collection.json). Simply download install client and import under "Collections" tab of ThunderClient.
