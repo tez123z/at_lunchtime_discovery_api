@@ -20,15 +20,7 @@ This stack is divided into two different containers:
 
 ## Ok, Let's Go!
 
-To start up the application in your local Docker environment:
-
-Once you have the repo locally, you will need to add create a `.env` file manually (secret keys and are not checked into the repo!)
-
-```
-$ touch .env
-```
-
-To start up the application in your local Docker environment:
+To start clone repo:
 
 ```bash
 $ git clone https://github.com/tez123z/at_lunchtime_discovery_api.git
@@ -41,7 +33,7 @@ Add `.env` file and your environment variables:
 $ touch .env
 ```
 
-GOOGLE_API_KEY environment variable required
+GOOGLE_API_KEY environment variable required:
 
 ```
 GOOGLE_API_KEY=SomeGoOglApIkEy
