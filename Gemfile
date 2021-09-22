@@ -49,3 +49,5 @@ gem "devise"
 gem "rails_param", "0.11.1"
 
 gem "oj", "~> 3.13"
+
+gem "rack-cors", "~> 1.1"
