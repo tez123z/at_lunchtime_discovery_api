@@ -46,4 +46,6 @@ VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection/envi
 - import collection under "Collections" tab and Enviroment under " of ThunderClient.
 - run requests using "Run All"
 
-https://share.getcloudapp.com/6quYn0Dl
+\*PS. you can create your own environment too. Environment required to store and pass variables between requests.
+
+[View Video Walkthrough(https://share.getcloudapp.com/6quYn0Dl)] (https://share.getcloudapp.com/6quYn0Dl)
