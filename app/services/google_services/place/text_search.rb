@@ -1,13 +1,14 @@
 module GoogleServices
   module Place
-    class TextSearch < ApplicationService
-    
-      attr_reader :search_params, :include_photo_links
+    class TextSearch < ApiService
 
-      MAX_RETRIES = 5
-      DEFAULT_SEARCH_PARAMS = { type: "restaurant" }
+      attr_reader :search_params
+
+      EXPONENTIAL_BACKOFF_EXCEPTIONS = [GatewayTimeoutError, ServerError]
+      MAX_RETRIES = 2
+      DEFAULT_SEARCH_PARAMS = { type: "restaurant" }.freeze
       
-      def initialize(search_params, include_photo_links = true)
+      def initialize(search_params)
         @search_params = DEFAULT_SEARCH_PARAMS.merge(search_params)
       end
 
@@ -18,22 +19,12 @@ module GoogleServices
         begin
 
           results = Rails.cache.fetch("google_places_search_#{@search_params.to_query}", expires_in:24.hours) {
-            
-            url = URI("https://maps.googleapis.com/maps/api/place/textsearch/json?#{@search_params.to_query}&key=#{GOOGLE_API_KEY}")
-
-            https = Net::HTTP.new(url.host, url.port)
-            https.use_ssl = true
-
-            request = Net::HTTP::Get.new(url)
-
-            response = https.request(request)
-            JSON.parse(response.body)["results"]
-
+            request(http_method:"GET",url:"https://maps.googleapis.com/maps/api/place/textsearch/json?#{@search_params.to_query}&key=#{GOOGLE_API_KEY}")
           }
           
-          OpenStruct.new({success?: true, payload: results})
+          OpenStruct.new({success?: true, payload: results["results"]})
 
-        rescue => e
+        rescue *EXPONENTIAL_BACKOFF_EXCEPTIONS => e
 
           puts e
           
@@ -45,9 +36,13 @@ module GoogleServices
 
           else
             
-            OpenStruct.new({success?: false, errors: e})
+            OpenStruct.new({success?: false, errors: {error:[e.message]}})
 
           end
+        
+        rescue => e
+          
+          OpenStruct.new({success?: false, errors: {error:[e.message]}})
 
         end
 

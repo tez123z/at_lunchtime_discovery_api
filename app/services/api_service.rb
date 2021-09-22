@@ -1,37 +1,44 @@
 require "uri"
 require "net/http"
+require "oj"
+
 class ApiService < ApplicationService
-
-      APIError = Class.new(StandardError)
-      BadRequestError = Class.new(APIError)
-      UnauthorizedError = Class.new(APIError)
-      ForbiddenError = Class.new(APIError)
-      ApiRequestsQuotaReachedError = Class.new(APIError)
-      NotFoundError = Class.new(APIError)
-      UnprocessableEntityError = Class.new(APIError)
       
-      HTTP_OK_CODE = 200
-
-      HTTP_BAD_REQUEST_CODE = 400
-      HTTP_UNAUTHORIZED_CODE = 401
-      HTTP_FORBIDDEN_CODE = 403
-      HTTP_NOT_FOUND_CODE = 404
-      HTTP_UNPROCESSABLE_ENTITY_CODE = 429
-
+      include HttpStatusCodes
+      include ApiExceptions
 
       private
-      
-      def request(http_method:, endpoint:, params: {})
-        response = client.public_send(http_method, endpoint, params)
-        parsed_response = Oj.load(response.body)
 
+      def response
+        @response
+      end
+      
+      def request(http_method:, url:, payload: {})
+        
+        url = URI(url)
+
+        https = Net::HTTP.new(url.host, url.port)
+        https.use_ssl = true
+
+        if http_method == 'POST'
+          request = Net::HTTP::Get.new(url)
+        else
+          request = Net::HTTP::Post.new(url) 
+          request.set_form_data(payload)
+        end
+
+        @response = https.request(request)
+        
+        parsed_response = Oj.load(response.body)
+        
         return parsed_response if response_successful?
 
-        raise error_class, "Code: #{response.status}, response: #{response.body}"
+        raise error_class, "Code: #{response.code}, response: #{response.body}"
+
       end
       
       def error_class
-        case response.status
+        case response.code.to_i
         when HTTP_BAD_REQUEST_CODE
           BadRequestError
         when HTTP_UNAUTHORIZED_CODE
@@ -40,16 +47,22 @@ class ApiService < ApplicationService
           return ApiRequestsQuotaReachedError if api_requests_quota_reached?
           ForbiddenError
         when HTTP_NOT_FOUND_CODE
-          NotFoundError
+          NotFoundErrorv
         when HTTP_UNPROCESSABLE_ENTITY_CODE
           UnprocessableEntityError
+        when HTTP_TOO_MANY_REQUESTS
+          TooManyRequestsError
+        when HTTP_SERVER_ERROR
+          ServerError
+        when HTTP_GATEWAY_TIMEOUT
+          GatewayTimeoutError
         else
           ApiError
         end
       end
       
       def response_successful?
-        response.status == HTTP_OK_CODE
+        response.code.to_i == HTTP_OK_CODE
       end
 
       def api_requests_quota_reached?
