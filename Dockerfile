@@ -12,6 +12,7 @@ RUN bundle install
 COPY . .
 
 RUN ["chmod", "+x", "./docker/startup.sh"]
+RUN ["chmod", "+x", "./docker/wait-for-services.sh"]
 RUN ["chmod", "+x", "./docker/prepare-db.sh"]
 ENTRYPOINT ["./docker/startup.sh"]
 EXPOSE 3000

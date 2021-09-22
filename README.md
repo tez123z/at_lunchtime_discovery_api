@@ -37,7 +37,7 @@ Enjoy!
 Tests included via rspec:
 
 ```bash
-  docker-compose run web bundle exec rspec
+  docker-compose run app bundle exec rspec
 ```
 
 [ThunderClient](https://www.thunderclient.io/) VS Code collection can also be found **thunder_client/collection.json**

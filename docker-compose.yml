@@ -3,22 +3,26 @@ version: "3.8"
 services:
   postgresql:
     image: postgres
-    restart: "no"
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=foobar123
+      POSTGRES_DB: at_lunchtime_discovery_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
     volumes:
       - postgresdb:/var/lib/postgresql/data/
 
+  redis:
+    image: redis:alpine
+
   app: &app_base
-    build: .
+    build:
+      context: .
     image: tez123z/at_lunchtime_discovery_api
-    restart: "no"
     environment:
       - DB_HOST=postgresql
       - DB_USER=postgres
-      - DB_PASS=password
+      - DB_PASSWORD=password
       - REDIS_SIDEKIQ_URL=redis://redis:6379/0
       - REDIS_CABLE_URL=redis://redis:6379/1
       - REDIS_CACHE_URL=redis://redis:6379/2
@@ -31,12 +35,9 @@ services:
       - SMTP_ENABLE_STARTTLS_AUTO
     ports:
       - 3000:3000
-    depends_on:
+    links:
       - postgresql
       - redis
-
-  redis:
-    image: redis:alpine
 
   worker:
     <<: *app_base
