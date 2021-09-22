@@ -26,6 +26,8 @@ services:
       - REDIS_SIDEKIQ_URL=redis://redis:6379/0
       - REDIS_CABLE_URL=redis://redis:6379/1
       - REDIS_CACHE_URL=redis://redis:6379/2
+      - SECRET_KEY_BASE=a1171556990b28c8e8b6d9d90af1fdc75ce7869afc19c4ba59fcad0b1c4c3122bb339c8eac724bf18583d3f5e5d447a0a5294f33237c7d2b3c7ce63e31dd0af6
+      - GOOGLE_API_KEY=AIzaSyDQSd210wKX_7cz9MELkxhaEOUhFP0AkSk
       - SMTP_SERVER
       - SMTP_PORT
       - SMTP_DOMAIN

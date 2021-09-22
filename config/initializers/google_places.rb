@@ -1,4 +1,4 @@
-GOOGLE_API_KEY = Rails.application.credentials[Rails.env.to_sym][:google_api_key]
+GOOGLE_API_KEY = ENV['GOOGLE_API_KEY']
 
 GOOGLE_SUPPORTED_LANGUAGE_CODES = [
   'af',	'ja', 'sq',	'kn', 'am',	'kk',
