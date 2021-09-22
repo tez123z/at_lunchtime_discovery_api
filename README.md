@@ -33,7 +33,7 @@ Add `.env` file and your environment variables:
 $ touch .env
 ```
 
-GOOGLE_API_KEY environment variable required:
+GOOGLE_API_KEY environment variable required. Example `.env` file:
 
 ```
 GOOGLE_API_KEY=SomeGoOglApIkEy
