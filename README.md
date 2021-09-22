@@ -14,8 +14,8 @@ This API wraps the Google Places API to return places to eat for lunch that may 
 This stack is divided into two different containers:
 
 - **app:** Main part. It contains the Rails code to handle web requests (by using the [Puma](https://github.com/puma/puma) gem). See the [Dockerfile](/Dockerfile) for details.
-- **worker:** Background processing. It contains the same Rails code, but only runs Sidekiq
-- **postgresql:** PostgreSQL database
+- **worker:** Background processing.
+- **postgresql:** PostgreSQL database.
 - **redis:** In-memory key/value store (used by Sidekiq, ActionCable and for caching)
 
 ## Ok, Let's Go!
