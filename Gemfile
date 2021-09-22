@@ -12,7 +12,8 @@ gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
+gem 'sidekiq'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -23,7 +24,16 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem "rack-cors", "~> 1.1"
+
+
+gem "warden-jwt_auth", "0.4.2"
+gem "devise-jwt"
+gem "devise"
+
+gem "rails_param", "0.11.1"
+
+gem "oj", "~> 3.13"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,12 +52,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "warden-jwt_auth", "0.4.2"
-gem "devise-jwt"
-gem "devise"
-
-gem "rails_param", "0.11.1"
-
-gem "oj", "~> 3.13"
-
-gem "rack-cors", "~> 1.1"
