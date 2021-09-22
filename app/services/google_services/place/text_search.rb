@@ -9,6 +9,7 @@ module GoogleServices
       DEFAULT_SEARCH_PARAMS = { type: "restaurant" }.freeze
       
       def initialize(search_params)
+        raise MissingAPICredentials, 'Missing credentials GOOGLE_API_KEY ' if GOOGLE_API_KEY.blank?
         @search_params = DEFAULT_SEARCH_PARAMS.merge(search_params)
       end
 

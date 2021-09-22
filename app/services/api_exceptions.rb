@@ -1,4 +1,5 @@
 module ApiExceptions
+  class MissingAPICredentials < StandardError; end
   class APIExceptionError < StandardError; end
   class BadRequestError < APIExceptionError 
     def message

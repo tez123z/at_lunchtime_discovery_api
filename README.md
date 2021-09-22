@@ -22,9 +22,41 @@ This stack is divided into two different containers:
 
 To start up the application in your local Docker environment:
 
+Once you have the repo locally, you will need to add create a `.env` file manually (secret keys and are not checked into the repo!)
+
+```
+$ touch .env
+```
+
+Once your `.env` file has been created, use your editor to add the following environment values:
+
+```
+RAILS_MASTER_KEY=[REDACTED]
+GOOGLE_MAPS_API_KEY=[REDACTED]
+```
+
+To start up the application in your local Docker environment:
+
 ```bash
-git clone https://github.com/tez123z/at_lunchtime_discovery_api.git
-cd at_lunchtime_discovery_api
+$ git clone https://github.com/tez123z/at_lunchtime_discovery_api.git
+$ cd at_lunchtime_discovery_api
+```
+
+Add .env file and your environment variables:
+
+```bash
+$ touch .env
+```
+
+GOOGLE_API_KEY environment variable required
+
+```
+GOOGLE_API_KEY=SomeGoOglApIkEy
+```
+
+Build and run containers
+
+```bash
 docker-compose build
 docker-compose up
 ```
