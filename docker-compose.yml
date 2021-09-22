@@ -1,30 +1,49 @@
-version: '3.8'
+version: "3.8"
 
 services:
-    web:
-        build: .
-        image: tez123z/at_lunchtime_discovery_api
-        restart: "no"
-        environment:
-            - DBHOST=postgresql
-            - DBUSER=postgres
-            - DBPASS=password
-        ports:
-            - 3000:3000
-        depends_on:
-            - postgresql
+  postgresql:
+    image: postgres
+    restart: "no"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=foobar123
+    volumes:
+      - postgresdb:/var/lib/postgresql/data/
 
-    postgresql:
-        image: postgres
-        restart: "no"
-        ports:
-            - 5432:5432
-        environment:
-            POSTGRES_DB: at_lunchtime_discovery_api
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: password
-        volumes:
-            - postgresdb:/var/lib/postgresql/data/
+  app: &app_base
+    build: .
+    image: tez123z/at_lunchtime_discovery_api
+    restart: "no"
+    environment:
+      - DB_HOST=postgresql
+      - DBU_SER=postgres
+      - DB_PASS=password
+      - REDIS_SIDEKIQ_URL=redis://redis:6379/0
+      - REDIS_CABLE_URL=redis://redis:6379/1
+      - REDIS_CACHE_URL=redis://redis:6379/2
+      - SMTP_SERVER
+      - SMTP_PORT
+      - SMTP_DOMAIN
+      - SMTP_USERNAME
+      - SMTP_PASSWORD
+      - SMTP_AUTHENTICATION
+      - SMTP_ENABLE_STARTTLS_AUTO
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgresql
+      - redis
+
+  redis:
+    image: redis:alpine
+
+  worker:
+    <<: *app_base
+    command: bundle exec sidekiq
+    ports: []
+    depends_on:
+      - app
 
 volumes:
-    postgresdb:
+  postgresdb:

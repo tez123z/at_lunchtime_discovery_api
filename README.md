@@ -1,24 +1,43 @@
-# README
+# AllTrails-LunchtimeDiscoveryAPI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 6.1 application makink it easy for the AllTrails team to find a great place to eat lunch by building a restaurant discovery API.
 
-Things you may want to cover:
+This API will wrap the Google Places API to return places to eat for lunch that may be used by other applications for presentation.
 
-* Ruby version
+## Features
 
-* System dependencies
+- Authentication via [Devise](https://github.com/heartcombo/devise) and [Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) : using JWT tokens for user authentication
+- Google Place API Text Search [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
 
-* Configuration
+## Multi container architecture
 
-* Database creation
+This stack is divided into two different containers:
 
-* Database initialization
+- **app:** Main part. It contains the Rails code to handle web requests (by using the [Puma](https://github.com/puma/puma) gem). See the [Dockerfile](/Dockerfile) for details.
+- **worker:** Background processing. It contains the same Rails code, but only runs Sidekiq
+- **postgresql:** PostgreSQL database
+- **redis:** In-memory key/value store (used by Sidekiq, ActionCable and for caching)
+- **backup:** Regularly backups the database as a dump via CRON to an Amazon S3 bucket
 
-* How to run the test suite
+## Ok, Let's Go!
 
-* Services (job queues, cache servers, search engines, etc.)
+To start up the application in your local Docker environment:
 
-* Deployment instructions
+```bash
+git clone https://github.com/tez123z/at_lunchtime_discovery_api.git
+cd at_lunchtime_discovery_api
+docker-compose build
+docker-compose up
+```
 
-* ...
+Enjoy!
+
+## Tests
+
+Tests included via rspec:
+
+```bash
+  docker-compose run web bundle exec rspec
+```
+
+[ThunderClient](https://www.thunderclient.io/) VS Code collection can also be found **thunder_client/collection.json**
