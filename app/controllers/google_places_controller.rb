@@ -4,7 +4,7 @@ class GooglePlacesController < ApplicationController
 
   def search
     
-    result = GoogleServices::PlacesSearch.call(search_params)
+    result = GoogleServices::Place::TextSearch.call(search_params)
 
     if result.success?
       
@@ -18,7 +18,7 @@ class GooglePlacesController < ApplicationController
 
     else
       
-      render json:{errors:result.errors}, status: :unprocessable_entity
+      render json:result.errors, status: :unprocessable_entity
     
     end
 
