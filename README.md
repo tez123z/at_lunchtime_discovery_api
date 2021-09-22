@@ -28,13 +28,6 @@ Once you have the repo locally, you will need to add create a `.env` file manual
 $ touch .env
 ```
 
-Once your `.env` file has been created, use your editor to add the following environment values:
-
-```
-RAILS_MASTER_KEY=[REDACTED]
-GOOGLE_MAPS_API_KEY=[REDACTED]
-```
-
 To start up the application in your local Docker environment:
 
 ```bash
@@ -42,7 +35,7 @@ $ git clone https://github.com/tez123z/at_lunchtime_discovery_api.git
 $ cd at_lunchtime_discovery_api
 ```
 
-Add .env file and your environment variables:
+Add `.env` file and your environment variables:
 
 ```bash
 $ touch .env
