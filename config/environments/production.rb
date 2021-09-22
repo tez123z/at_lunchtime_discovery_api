@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -36,14 +38,14 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   if ENV['APP_HOST'] || ENV['FRONTEND_HOST']
-    config.action_cable.allowed_request_origins = [ ENV['APP_HOST'], ENV['FRONTEND_HOST'] ].compact.map do |allowed_host|
-      /(?:^(http|https):\/\/)?(?:([^.]+)\.)?#{allowed_host}/
+    config.action_cable.allowed_request_origins = [ENV['APP_HOST'],
+                                                   ENV['FRONTEND_HOST']].compact.map do |allowed_host|
+      %r{(?:^(http|https)://)?(?:([^.]+)\.)?#{allowed_host}}
     end
   else
     # Allow all origins
     config.action_cable.disable_request_forgery_protection = true
   end
-
 
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
@@ -57,14 +59,14 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
   config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter     = :sidekiq
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "at_lunchtime_discovery_api_production"
 
   config.action_mailer.perform_caching = false
@@ -76,16 +78,15 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV['SMTP_SERVER'],
-    port:                 ENV['SMTP_PORT'].to_i,
-    domain:               ENV['SMTP_DOMAIN'],
-    user_name:            ENV['SMTP_USERNAME'],
-    password:             ENV['SMTP_PASSWORD'],
-    authentication:       ENV['SMTP_AUTHENTICATION'],
+    address: ENV['SMTP_SERVER'],
+    port: ENV['SMTP_PORT'].to_i,
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentication: ENV['SMTP_AUTHENTICATION'],
     enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'].present?
   }
 
-  
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -106,8 +107,8 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end

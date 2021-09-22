@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritePlacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_favorite_place, only: [:show, :update, :destroy]
@@ -36,13 +38,14 @@ class FavoritePlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite_place
-      @favorite_place = current_user.favorite_places.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def favorite_place_params
-      params.require(:favorite_place).permit(:place_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorite_place
+    @favorite_place = current_user.favorite_places.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def favorite_place_params
+    params.require(:favorite_place).permit(:place_id)
+  end
 end

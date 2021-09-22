@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 module HttpStatusCodes
-  
   HTTP_OK_CODE = 200
 
   HTTP_BAD_REQUEST_CODE = 400
@@ -10,5 +11,4 @@ module HttpStatusCodes
   HTTP_TOO_MANY_REQUESTS = 429
   HTTP_SERVER_ERROR = 500
   HTTP_GATEWAY_TIMEOUT = 504
-
 end

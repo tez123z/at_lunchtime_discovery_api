@@ -15,8 +15,8 @@ class CustomFailureApp < Devise::FailureApp
 
   def json_error_response
     self.status = 401
-    self.content_type = "application/json"
-    self.response_body = {errors:[ i18n_message ]}.to_json
+    self.content_type = 'application/json'
+    self.response_body = { errors: [i18n_message] }.to_json
   end
 end
 
@@ -275,7 +275,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = [] #['*/*', :html]
+  config.navigational_formats = [] # ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -323,9 +323,8 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    
     jwt.secret = ENV['SECRET_KEY_BASE']
-    
+
     jwt.dispatch_requests = [
       ['POST', %r{^/login$}],
       ['POST', %r{^/signup$}]
@@ -334,9 +333,7 @@ Devise.setup do |config|
     jwt.revocation_requests = [
       ['DELETE', %r{^/logout$}]
     ]
-    
-    jwt.expiration_time = 1.day.to_i
-  
-  end
 
+    jwt.expiration_time = 1.day.to_i
+  end
 end

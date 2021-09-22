@@ -1,4 +1,4 @@
-# AllTrails-LunchtimeDiscoveryAPI
+# AllTrails - LunchtimeDiscoveryAPI
 
 Rails 6.1 application making it easy for the AllTrails team to find a great place to eat lunch.
 
