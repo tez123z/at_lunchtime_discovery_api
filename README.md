@@ -58,7 +58,7 @@ GOOGLE_API_KEY environment variable required. Example `.env` file:
 GOOGLE_API_KEY=SomeGoOglApIkEy
 ```
 
-Build and run containers
+Build prepare and run containers
 
 ```bash
 $ docker-compose build
