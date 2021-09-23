@@ -17,19 +17,7 @@ module GoogleServices
           Google::Maps::Place.text_search(@search_params)
         end
 
-        sorted_results = if sort_by_ratings
-                           results['results'].sort do |a, b|
-                             if sort_by_ratings.casecmp('asc').zero?
-                               a['rating'] <=> b['rating']
-                             else
-                               b['rating'] <=> a['rating']
-                             end
-                           end
-                         else
-                           results['results']
-                         end
-
-        OpenStruct.new({ success?: true, payload: [sorted_results, results['next_page_token']] })
+        OpenStruct.new({ success?: true, payload: [results['results'], results['next_page_token']] })
       rescue StandardError => e
         OpenStruct.new({ success?: false, errors: { google_api: [e] } })
       end

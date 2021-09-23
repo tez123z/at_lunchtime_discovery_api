@@ -2,11 +2,7 @@
 
 class FavoritePlace < ApplicationRecord
   belongs_to :user
-
   validates :place_id, presence: true, uniqueness: { scope: :user_id }
-
-  after_create :add_cache
-  after_destroy :remove_cache
 
   def self.cache_from_place_id_and_user_id(place_id, user_id)
     Rails.cache.fetch(FavoritePlace.cache_key_from_place_id_and_user_id(place_id, user_id)) || false

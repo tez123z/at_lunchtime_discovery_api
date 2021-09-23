@@ -28,9 +28,8 @@ module Google
         private
 
         def handle_required_keys(service, args)
-          
           required_keys = Google::Maps.required_keys[service]
-          
+
           if required_keys
             missing_keys = required_keys - args.symbolize_keys.filter { |_k, v| v.present? }.keys
             if missing_keys.length.positive?
@@ -38,7 +37,6 @@ module Google
                     "Missing required parameters `#{missing_keys.join(',')}`"
             end
           end
-
         end
 
         def response(url)
