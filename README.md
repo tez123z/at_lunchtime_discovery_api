@@ -12,6 +12,7 @@ This API wraps the Google Places API to return places to eat for lunch that may 
 ### Authentication
 
 _[Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) dispatches and accepts token via Authorization header_
+
 **Ex "Authorization":"Bearer {token}"**
 
 Endpoints for authentication and token management:
