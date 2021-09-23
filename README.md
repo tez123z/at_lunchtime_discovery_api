@@ -23,6 +23,8 @@ Endpoints for authentication and token management:
 - **POST /login** with existing user to retrieve token
 - **POST /signup** to create new user
 - **DELETE /logout and DELETE /signup** to revoke token and destroy user respectively
+- **email and password** required for login and signup as expected
+- **test user included in seeds.rb**
 
 ### Search
 
