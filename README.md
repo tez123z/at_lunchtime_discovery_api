@@ -83,15 +83,6 @@ Endpoints for authentication and token management:
   ```
 - **DELETE /favorite_places/:favorite_place_id endpoint** requires authentication and accepts parameter :favorite_place_id to unfavorite place
 
-  #### Low-level caching for performance
-
-  To optimize favorite places enable caching in development
-
-  ```bash
-  $ docker-compose run app rails dev:cache
-  Development mode is now being cached.     //Yay, gimme the cache
-  ```
-
 ## Multi container architecture
 
 This stack is divided into two different containers:
