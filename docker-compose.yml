@@ -41,12 +41,5 @@ services:
       - postgresql
       - redis
 
-  worker:
-    <<: *app_base
-    command: bundle exec sidekiq
-    ports: []
-    depends_on:
-      - app
-
 volumes:
   postgresdb:

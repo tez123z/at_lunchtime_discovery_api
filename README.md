@@ -81,13 +81,14 @@ Tests included via rspec:
 
 Testing also available using ThunderClient:
 
-VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection/environment can be found here [/thunder_client](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client).
+VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection can be found here [/thunder_client](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client/collection.json).
 
-- Download collection.json and environment.json
+- Download collection.json
 - Install Thunder Client
-- Import collection under "Collections" tab and Environment under "Env" tab of ThunderClient.
+- Create new Environment under "Env" tab of ThunderClient.
+- Import collection under "Collections" tab
 - Run collection requests using "Run All"
 
-_PS. You can create/use your own environment too. Environment required to store and pass variables between requests._
+_PS. Environment required to store and pass variables between requests._
 
 [View Video Walkthrough HERE](https://share.getcloudapp.com/6quYn0Dl)

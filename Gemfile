@@ -15,6 +15,7 @@ gem 'puma', '~> 5.0'
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
+# Sidekiq for background job processing
 gem 'sidekiq'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -34,6 +35,7 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'warden-jwt_auth', '0.4.2'
 
+#A fast JSON parser and Object marshaller as a Ruby gem.
 gem 'oj', '~> 3.13'
 
 group :development, :test do
