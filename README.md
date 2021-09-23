@@ -70,12 +70,12 @@ Endpoints for authentication and token management:
 
 ### Favorite Places
 
-- **POST /favorite_places endpoint** requires authentication and accepts parameter :favorite_place with :place_id from search response
+- **POST /favorite_places endpoint** requires authentication and accepts :favorite_place object with :place_id from search response
   ex.
   ```bash
   {
-    favorite_place:{
-      place_id:"sOmEGoOgLePlacEID"
+    "favorite_place":{
+      "place_id":"sOmEGoOgLePlacEID"
     }
   }
   ```
