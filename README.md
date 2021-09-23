@@ -73,7 +73,9 @@ Endpoints for authentication and token management:
 ### Favorite Places
 
 - **POST /favorite_places endpoint** requires authentication and accepts :favorite_place object with :place_id from search response
-  ex.
+
+  #### Request Data
+
   ```bash
   {
     "favorite_place":{
@@ -81,7 +83,22 @@ Endpoints for authentication and token management:
     }
   }
   ```
-- **DELETE /favorite_places/:favorite_place_id endpoint** requires authentication and accepts parameter :favorite_place_id to unfavorite place
+
+- **GET /favorite_places endpoint** requires authentication and accepts parameters :items and :page for pagination using [Pagy](https://ddnexus.github.io/pagy/how-to#quick-start&gsc.tab=0)
+
+  #### Response Data
+
+  ```bash
+  {
+    "data": [PlaceObject],
+    "pagy": {
+      "page": 1,    //Current Page
+      "count": 1    //Total item count
+    }
+  }
+  ```
+
+- **DELETE /favorite_places/:place_id endpoint** requires authentication and accepts parameter :place_id to unfavorite place (same as place_id from google response)
 
 ## Multi container architecture
 

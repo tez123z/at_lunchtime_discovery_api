@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: DenyList
 
   has_many :favorite_places, dependent: :destroy
+  has_many :favorite_places_with_data, -> { where.not(data: nil) }, class_name: 'FavoritePlace', inverse_of: :user
 end

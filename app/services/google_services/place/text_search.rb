@@ -13,7 +13,6 @@ module GoogleServices
       end
 
       def call
-        
         results = Rails.cache.fetch("google_places_search_#{@search_params.to_query}", expires_in: 24.hours) do
           Google::Maps::Place.text_search(@search_params)
         end

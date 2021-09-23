@@ -6,4 +6,7 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+  rescue_from(ActiveRecord::RecordNotFound) do |exception|
+    # Do something with the exception
+  end
 end

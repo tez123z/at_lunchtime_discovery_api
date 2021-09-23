@@ -6,9 +6,8 @@ class FavoritePlacesController < ApplicationController
 
   # GET /favorite_places
   def index
-    @favorite_places = current_user.favorite_places.all
-
-    render json: @favorite_places
+    @pagy, @favorite_places = pagy(current_user.favorite_places_with_data, items: params[:items])
+    render json: { data: @favorite_places.pluck(:data), pagy: @pagy }
   end
 
   # GET /favorite_places/1
@@ -41,7 +40,7 @@ class FavoritePlacesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_favorite_place
-    @favorite_place = current_user.favorite_places.find(params[:id])
+    @favorite_place = current_user.favorite_places.find_by(place_id: params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -6,7 +6,7 @@ module Google
     module Configuration
       # An array of valid keys in the options hash when configuring an {Google::Maps::API}
       VALID_OPTIONS_KEYS = [:end_point, :format, :excludes_format, :api_key, :default_language, :place_text_search_service, :place_photo_service,
-                            :place_nearby_search_service, :required_keys, :place_details_service, :default_params, 
+                            :place_nearby_search_service, :required_keys, :place_details_service, :default_params,
                             :exponential_backoff, :exponential_backoff_max_retries].freeze
 
       API_KEY = 'api_key'.freeze
@@ -32,6 +32,9 @@ module Google
 
       # default required keys per service
       DEFAULT_REQUIRED_KEYS = {
+        place_details_service: [
+          :place_id
+        ],
         place_text_search_service: [
           :query
         ],
@@ -42,8 +45,7 @@ module Google
       }.freeze
 
       # excludes format services
-      DEFAULT_EXCLUDES_FORMAT = [:place_photo_service]
-
+      DEFAULT_EXCLUDES_FORMAT = [:place_photo_service].freeze
 
       # @private
       attr_accessor(*VALID_OPTIONS_KEYS)

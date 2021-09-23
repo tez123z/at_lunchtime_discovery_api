@@ -99,7 +99,7 @@ RSpec.describe '/favorite_places', type: :request do
     it 'destroys the requested favorite_place' do
       favorite_place = FavoritePlace.create! valid_attributes
       expect do
-        delete favorite_place_url(favorite_place), headers: valid_headers, as: :json
+        delete favorite_place_url(favorite_place.place_id), headers: valid_headers, as: :json
       end.to change(FavoritePlace, :count).by(-1)
     end
   end

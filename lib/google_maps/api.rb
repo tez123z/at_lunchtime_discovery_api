@@ -19,14 +19,13 @@ module Google
       STATUS_ZERO_RESULTS = 'ZERO_RESULTS'
 
       class << self
-        
         def query(service, args = {})
           handle_required_keys(service, args)
           url = url(service, args)
           response(url)
         end
 
-        def head(service,args = {})
+        def head(service, args = {})
           handle_required_keys(service, args)
           url = url(service, args)
           head_response(url)
