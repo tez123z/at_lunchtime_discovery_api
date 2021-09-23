@@ -8,7 +8,7 @@ module Helpers
   def token
     token_from_request = response.headers['Authorization'].split(' ').last
     decoded_token = JWT.decode(token_from_request,
-                               Rails.application.credentials[Rails.env.to_sym][:devise_jwt_secret_key], true)
+                               ENV["SECRET_KEY_BASE"], true)
     decoded_token.first['sub']
   end
 end

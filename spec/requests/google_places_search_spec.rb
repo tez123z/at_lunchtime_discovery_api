@@ -17,59 +17,11 @@ RSpec.describe 'POST /search', type: :request do
     }
   end
 
-  let(:invalid_location_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490'
-    }
-  end
-
-  let(:invalid_language_params) do
-    {
-      query: 'Burgers',
-      language: 'xcrp',
-      location: '34.885253490,-82.4170214515'
-    }
-  end
-
-  let(:invalid_maxprice_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490,-82.4170214515',
-      maxprice: 5
-    }
-  end
-
-  let(:invalid_minprice_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490,-82.4170214515',
-      minprice: 5
-    }
-  end
-
-  let(:invalid_opennow_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490,-82.4170214515',
-      opennow: 'sure'
-    }
-  end
-
-  let(:invalid_radius_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490,-82.4170214515',
-      radius: 500_000
-    }
-  end
-
-  let(:invalid_type_params) do
-    {
-      query: 'Burgers',
-      location: '34.885253490,-82.4170214515',
-      type: 'haberdashery'
-    }
+  let(:valid_params_with_pagetoken) do
+    result = GoogleServices::Place::TextSearch.call({query: 'Burgers',location: '34.885253490,-82.4170214515'})
+    results,next_page_token = result.payload
+    new_params = valid_params.merge({pagetoken:next_page_token})
+    new_params
   end
 
   context 'without active session' do
@@ -103,63 +55,32 @@ RSpec.describe 'POST /search', type: :request do
     before { post url, headers: valid_headers, as: :json }
 
     it 'returns bad request status' do
-      expect(response.status).to eq 400
+      expect(response.status).to eq 422
     end
   end
 
-  context 'when search params have bad location parameter' do
-    before { post url, params: invalid_location_params, headers: valid_headers, as: :json }
+  context 'when search params with ratings sorted' do
+    before do
+      post url, params: valid_params.merge({sort_by_ratings:"asc"}), headers: valid_headers, as: :json
+    end
 
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
+    it 'returns 200' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'set to type restaurant by default' do
+      expect(response).to include_google_place_type('restaurant')
+    end
+
+    it 'matches search results json schema' do
+      expect(response).to match_response_schema('google_places_search_results')
+    end
+
+    it 'matches search results json schema' do
+      response_body = JSON.parse(response.body)
+      expect(response_body['data'][0]['rating']).to be <= response_body['data'][1]['rating']
     end
   end
 
-  context 'when search params bad language parameter' do
-    before { post url, params: invalid_language_params, headers: valid_headers, as: :json }
 
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
-
-  context 'when search params bad maxprice parameter' do
-    before { post url, params: invalid_maxprice_params, headers: valid_headers, as: :json }
-
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
-
-  context 'when search params bad minprice parameter' do
-    before { post url, params: invalid_minprice_params, headers: valid_headers, as: :json }
-
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
-
-  context 'when search params bad opennow parameter' do
-    before { post url, params: invalid_opennow_params, headers: valid_headers, as: :json }
-
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
-
-  context 'when search params bad radius parameter' do
-    before { post url, params: invalid_radius_params, headers: valid_headers, as: :json }
-
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
-
-  context 'when search params type parameter' do
-    before { post url, params: invalid_type_params, headers: valid_headers, as: :json }
-
-    it 'returns bad request status' do
-      expect(response.status).to eq 400
-    end
-  end
 end

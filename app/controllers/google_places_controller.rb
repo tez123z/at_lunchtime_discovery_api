@@ -20,7 +20,7 @@ class GooglePlacesController < ApplicationController
   private
 
   def search_params
-    params.require(:google_place).permit(:query, :location, :pagetoken)
+    params.permit(:query, :location, :radius, :sort_by_ratings, :pagetoken)
   end
 
 end

@@ -6,7 +6,7 @@ This API wraps the Google Places API to return places to eat for lunch that may 
 
 ## Features
 
-- Authentication via [Devise](https://github.com/heartcombo/devise) and [Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) : using JWT tokens for user authentication
+- Authentication via [Devise](https://github.com/heartcombo/devise) and [Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) : using JWT for user authentication
 - Search via Google Place API Text Search [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
 
 ### Authentication

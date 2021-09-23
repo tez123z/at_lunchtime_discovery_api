@@ -32,7 +32,8 @@ RSpec.describe '/favorite_places', type: :request do
                                                       location: '34.885253490,-82.4170214515'
                                                     })
 
-    result.payload[rand(0..result.payload.length - 1)]
+    results,next_page_token = result.payload
+    results[rand(0..result.payload.length - 1)]
   end
 
   let(:invalid_attributes) do

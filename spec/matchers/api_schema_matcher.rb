@@ -11,6 +11,6 @@ end
 RSpec::Matchers.define :include_google_place_type do |type|
   match do |response|
     results = JSON.parse(response.body)
-    results.all? { |result| result['types'].include?(type) }
+    results['data'].all? { |result| result['types'].include?(type) }
   end
 end
