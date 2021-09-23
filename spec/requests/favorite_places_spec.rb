@@ -27,12 +27,8 @@ RSpec.describe '/favorite_places', type: :request do
   end
 
   let(:google_place) do
-    result = GoogleServices::Place::TextSearch.call({
-                                                      query: 'Burgers',
-                                                      location: '34.885253490,-82.4170214515'
-                                                    })
-
-    results,next_page_token = result.payload
+    result = GoogleServices::Place::TextSearch.call({ query: 'Burgers', location: '34.885253490,-82.4170214515' })
+    results, next_page_token = result.payload
     results[rand(0..result.payload.length - 1)]
   end
 
@@ -90,7 +86,7 @@ RSpec.describe '/favorite_places', type: :request do
         end.to change(FavoritePlace, :count).by(0)
       end
 
-      it 'renders a JSON response with errors for the new favorite_place' do
+      it 'renders a JSON response with errors' do
         post favorite_places_url,
              params: { favorite_place: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)

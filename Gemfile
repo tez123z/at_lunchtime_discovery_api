@@ -29,13 +29,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', '~> 1.1'
 
-#Devise is a flexible authentication solution for Rails
+# Devise is a flexible authentication solution for Rails
 gem 'devise'
-#devise-jwt is a devise extension which uses JWT tokens for user authentication
+# devise-jwt is a devise extension which uses JWT tokens for user authentication
 gem 'devise-jwt'
 gem 'warden-jwt_auth', '0.4.2'
 
-#A fast JSON parser and Object marshaller as a Ruby gem.
+# A fast JSON parser and Object marshaller as a Ruby gem.
 gem 'oj', '~> 3.13'
 
 group :development, :test do
@@ -53,6 +53,7 @@ group :development do
   gem 'rubocop'
   gem 'rubocop-rails', require: false
   gem 'rubocop-performance', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

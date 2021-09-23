@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   respond_to :json
 
   rescue_from Exception do |exception|
-    render json: { errors: [exception] }, status: 500
+    render json: { errors: [exception] }, status: :internal_server_error
   end
 
   def render_resource(resource)

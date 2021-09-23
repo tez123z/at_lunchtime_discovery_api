@@ -8,7 +8,7 @@ module GoogleSerializer
       place['photos'].each do |p|
         if p['photo_reference']
           p['photo_url'] = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{maxwidth}"\
-                            "&photo_reference=#{p['photo_reference']}&key=#{GOOGLE_API_KEY}"
+                           "&photo_reference=#{p['photo_reference']}&key=#{GOOGLE_API_KEY}"
         end
       end
     end

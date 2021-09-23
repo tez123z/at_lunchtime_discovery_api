@@ -1,4 +1,3 @@
-
 GOOGLE_SUPPORTED_LANGUAGE_CODES = %w[
   af ja sq kn am kk
   ar km hy ko az ky

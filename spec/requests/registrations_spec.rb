@@ -19,7 +19,7 @@ RSpec.describe 'POST /signup', type: :request do
     end
 
     it 'returns 200' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'returns JTW token in authorization header' do
@@ -55,6 +55,6 @@ RSpec.describe 'DELETE /signup', type: :request do
 
   it 'returns 200, no content' do
     delete url, headers: valid_headers
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(:ok)
   end
 end

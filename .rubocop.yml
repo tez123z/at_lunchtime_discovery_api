@@ -1,14 +1,14 @@
 require:
   - rubocop-rails
   - rubocop-performance
+  - rubocop-rspec
 
-# AllCops:
-#   TargetRubyVersion: 2.7.2
-#   Exclude:
-#     - db/*
-#     - bin/*
-#     - config/initializers/*
-#   NewCops: enable
+AllCops:
+  TargetRubyVersion: 2.7.2
+  Exclude:
+    - db/*
+    - bin/*
+  NewCops: enable
 
 ### Rails
 

@@ -62,7 +62,7 @@ Build and run containers
 
 ```bash
 $ docker-compose build
-$ docker-compose run app bundle exec rake db:prepare //only necessary after first build
+$ docker-compose run app bundle exec rake db:prepare    *//only necessary after first build*
 $ docker-compose up
 ```
 

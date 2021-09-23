@@ -18,9 +18,9 @@ RSpec.describe 'POST /search', type: :request do
   end
 
   let(:valid_params_with_pagetoken) do
-    result = GoogleServices::Place::TextSearch.call({query: 'Burgers',location: '34.885253490,-82.4170214515'})
-    results,next_page_token = result.payload
-    new_params = valid_params.merge({pagetoken:next_page_token})
+    result = GoogleServices::Place::TextSearch.call({ query: 'Burgers', location: '34.885253490,-82.4170214515' })
+    _results, next_page_token = result.payload
+    new_params = valid_params.merge({ pagetoken: next_page_token })
     new_params
   end
 
@@ -28,6 +28,7 @@ RSpec.describe 'POST /search', type: :request do
     before do
       post url, params: valid_params
     end
+
     it 'returns unathorized status' do
       expect(response.status).to eq 401
     end
@@ -39,7 +40,7 @@ RSpec.describe 'POST /search', type: :request do
     end
 
     it 'returns 200' do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'set to type restaurant by default' do
@@ -61,19 +62,7 @@ RSpec.describe 'POST /search', type: :request do
 
   context 'when search params with ratings sorted' do
     before do
-      post url, params: valid_params.merge({sort_by_ratings:"asc"}), headers: valid_headers, as: :json
-    end
-
-    it 'returns 200' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'set to type restaurant by default' do
-      expect(response).to include_google_place_type('restaurant')
-    end
-
-    it 'matches search results json schema' do
-      expect(response).to match_response_schema('google_places_search_results')
+      post url, params: valid_params.merge({ sort_by_ratings: "asc" }), headers: valid_headers, as: :json
     end
 
     it 'matches search results json schema' do
@@ -81,6 +70,4 @@ RSpec.describe 'POST /search', type: :request do
       expect(response_body['data'][0]['rating']).to be <= response_body['data'][1]['rating']
     end
   end
-
-
 end
