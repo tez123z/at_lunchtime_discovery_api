@@ -19,9 +19,9 @@ _[Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) dispatches and acc
 
 Endpoints for authentication and token management:
 
-- POST /login with existing user to retrieve token
-- POST /signup to create new user
-- DELETE /logout and /signup to revoke token and destroy user respectively
+- **POST /login** with existing user to retrieve token
+- **POST /signup** to create new user
+- **DELETE /logout and DELETE /signup** to revoke token and destroy user respectively
 
 ### Search
 
@@ -62,7 +62,7 @@ Build prepare and run containers
 
 ```bash
 $ docker-compose build
-$ docker-compose run app bundle exec rake db:prepare      *only necessary after first build
+$ docker-compose run app bundle exec rake db:prepare      *_only necessary after first build_
 $ docker-compose up
 ```
 
