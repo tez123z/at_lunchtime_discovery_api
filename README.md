@@ -84,7 +84,7 @@ Endpoints for authentication and token management:
   }
   ```
 
-- **GET /favorite_places** endpoint requires authentication and accepts parameters :items and :page for pagination using [Pagy](https://ddnexus.github.io/pagy/how-to#quick-start&gsc.tab=0)
+- **GET /favorite_places** endpoint to get list of current user's favorite places. Accepts parameters :items and :page for pagination using [Pagy](https://ddnexus.github.io/pagy/how-to#quick-start&gsc.tab=0)
 
   #### Response Data
 

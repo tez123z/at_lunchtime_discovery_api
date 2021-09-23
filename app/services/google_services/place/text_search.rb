@@ -3,12 +3,11 @@
 module GoogleServices
   module Place
     class TextSearch < ApplicationService
-      attr_reader :search_params, :sort_by_ratings
+      attr_reader :search_params
 
       DEFAULT_SEARCH_PARAMS = { type: 'restaurant' }.freeze
 
       def initialize(search_params = {})
-        @sort_by_ratings = search_params[:sort_by_ratings]
         @search_params = DEFAULT_SEARCH_PARAMS.merge(search_params)
       end
 

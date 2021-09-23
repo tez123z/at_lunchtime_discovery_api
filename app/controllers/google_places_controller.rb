@@ -4,6 +4,7 @@ class GooglePlacesController < ApplicationController
   before_action :authenticate_user!
 
   def search
+    
     result = GoogleServices::Place::TextSearch.call(search_params)
 
     if result.success?
