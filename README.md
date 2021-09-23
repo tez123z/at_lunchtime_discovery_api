@@ -30,14 +30,14 @@ Endpoints for authentication and token management:
 - **:pagetoken** provided in response as :next_page_token for pagination thru google place results
 - **:sort_by_ratings** value can be either `asc` or `desc` for results sorted by ratings
 
-#### Response Data
+  #### Response Data
 
-```bash
-{
-  data: [array of google place objects]
-  next_page_token: "token for pagination"
-}
-```
+  ```bash
+  {
+    data: [array of google place objects]
+    next_page_token: "token for pagination"
+  }
+  ```
 
 ## Multi container architecture
 
