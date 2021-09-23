@@ -85,7 +85,7 @@ Endpoints for authentication and token management:
 
   #### Low-level caching for performance
 
-  To optimize favorite places enabled caching in development
+  To optimize favorite places enable caching in development
 
   ```bash
   $ docker-compose run app rails dev:cache
