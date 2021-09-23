@@ -39,6 +39,34 @@ Endpoints for authentication and token management:
   }
   ```
 
+  #### PlaceObject
+
+  ```bash
+  {
+    place_id: "sOmEGoOgLePlacEID",  //Used for tagging favorite places
+    geometry:{
+      location:{
+        lng:34.8887163,
+        lng:-82.4060021
+      }
+    },
+    .
+    .
+    .
+    name:"Restaurant Name",
+    rating:4.1,
+    price_level:1,
+    user_ratings_total:1443,
+    favorited:true,    //True when current user has favorited place
+    photos: [
+      {
+        ...
+        photo_url:"https://somephotourl_for-resaturant"
+      }
+    ]
+  }
+  ```
+
 ## Multi container architecture
 
 This stack is divided into two different containers:
@@ -73,7 +101,7 @@ Build prepare and run containers
 
 ```bash
 $ docker-compose build
-$ docker-compose run app bundle exec rake db:prepare      *_only necessary after first build_
+$ docker-compose run app bundle exec rake db:prepare      //only necessary after first build
 $ docker-compose up
 ```
 
