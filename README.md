@@ -61,8 +61,9 @@ GOOGLE_API_KEY=SomeGoOglApIkEy
 Build and run containers
 
 ```bash
-docker-compose build
-docker-compose up
+$ docker-compose build
+$ docker-compose run app bundle exec rake db:prepare //only necessary after first build
+$ docker-compose up
 ```
 
 Enjoy!
@@ -74,7 +75,7 @@ Enjoy!
 Tests included via rspec:
 
 ```bash
-  docker-compose run app bundle exec rspec
+$ docker-compose run app bundle exec rspec
 ```
 
 ### ThunderClient

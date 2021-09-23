@@ -3,8 +3,8 @@
 class ApplicationController < ActionController::API
   respond_to :json
 
-  rescue_from RailsParam::Param::InvalidParameterError do |exception|
-    render json: { errors: [exception] }, status: :bad_request
+  rescue_from Exception do |exception|
+    render json: { errors: [exception] }, status: 500
   end
 
   def render_resource(resource)
