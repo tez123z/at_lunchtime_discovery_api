@@ -7,7 +7,22 @@ This API wraps the Google Places API to return places to eat for lunch that may 
 ## Features
 
 - Authentication via [Devise](https://github.com/heartcombo/devise) and [Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) : using JWT tokens for user authentication
-- Google Place API Text Search [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
+- Search via Google Place API Text Search [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
+
+### Authentication
+
+Endpoints for authentication and jwt management
+
+- POST /login with existing user to retrieve token
+  _[Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) dispatches and accepts token via Authorization header_
+  **Ex "Authorization":"Bearer {token}"**
+- POST /signup to create new user
+- DELETE /logout and /signup to revoke token and destroy user respectively
+
+### Search
+
+- POST /search endpoint requires authentication and accepts parameters :query, :location, :page_token
+- :location parameter format is "{latitude},{longitude}" mirroring format of [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
 
 ## Multi container architecture
 
@@ -50,11 +65,17 @@ Enjoy!
 
 ## Tests
 
-Tests included via rspec and ThunderClient:
+### Rspec
+
+Tests included via rspec:
 
 ```bash
   docker-compose run app bundle exec rspec
 ```
+
+### ThunderClient
+
+Testing also available using ThunderClient:
 
 VS Code Extension [ThunderClient](https://www.thunderclient.io/) collection/environment can be found here [/thunder_client](https://github.com/tez123z/at_lunchtime_discovery_api/blob/main/thunder_client).
 
