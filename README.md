@@ -8,6 +8,7 @@ This API wraps the Google Places API to return places to eat for lunch that may 
 
 - Authentication via [Devise](https://github.com/heartcombo/devise) and [Devise::JWT](https://github.com/waiting-for-dev/devise-jwt) : using JWT for user authentication
 - Search via Google Place API Text Search [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
+- FavoritePlace model and endpoints available for tagging favorite places.
 
 ### Authentication
 
@@ -34,7 +35,7 @@ Endpoints for authentication and token management:
 
   ```bash
   {
-    data: [PlaceObject]
+    data: [PlaceObject],
     next_page_token: "token for pagination"
   }
   ```
@@ -43,7 +44,7 @@ Endpoints for authentication and token management:
 
   ```bash
   {
-    place_id: "sOmEGoOgLePlacEID",  //Used for tagging favorite places
+    place_id: "sOmEGoOgLePlacEID",  //Used when tagging favorite places
     geometry:{
       location:{
         lng:34.8887163,
@@ -57,7 +58,7 @@ Endpoints for authentication and token management:
     rating:4.1,
     price_level:1,
     user_ratings_total:1443,
-    favorited:true,    //True when current user has favorited place
+    favorited:true,    //true when current user has favorited place
     photos: [
       {
         ...
@@ -66,6 +67,19 @@ Endpoints for authentication and token management:
     ]
   }
   ```
+
+### Favorite Places
+
+- **POST /favorite_places endpoint** requires authentication and accepts parameter :favorite_place with :place_id from search response
+  ex.
+  ```bash
+  {
+    favorite_place:{
+      place_id:"sOmEGoOgLePlacEID"
+    }
+  }
+  ```
+- **DELETE /favorite_places/:favorite_place_id endpoint** requires authentication and accepts parameter :favorite_place_id to unfavorite place
 
 ## Multi container architecture
 
