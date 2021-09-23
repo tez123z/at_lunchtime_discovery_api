@@ -35,8 +35,8 @@ Endpoints for authentication and token management:
 
   ```bash
   {
-    data: [PlaceObject],
-    next_page_token: "token for pagination"
+    "data": [PlaceObject],
+    "next_page_token": "token for pagination"
   }
   ```
 
@@ -44,22 +44,22 @@ Endpoints for authentication and token management:
 
   ```bash
   {
-    place_id: "sOmEGoOgLePlacEID",  //Used when tagging favorite places
-    geometry:{
-      location:{
-        lng:34.8887163,
-        lng:-82.4060021
+    "place_id": "sOmEGoOgLePlacEID",  //Used when tagging favorite places
+    "geometry":{
+      "location":{
+        "lat":34.8887163,
+        "lng":-82.4060021
       }
     },
     .
     .
     .
-    name:"Restaurant Name",
-    rating:4.1,
-    price_level:1,
-    user_ratings_total:1443,
-    favorited:true,    //true when current user has favorited place
-    photos: [
+    "name":"Restaurant Name",
+    "rating":4.1,
+    "price_level":1,
+    "user_ratings_total":1443,
+    "favorited":true,    //true when current user has favorited place
+    "photos": [
       {
         ...
         photo_url:"https://somephotourl_for-resaturant"
