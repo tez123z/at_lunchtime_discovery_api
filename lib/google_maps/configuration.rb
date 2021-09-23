@@ -5,8 +5,9 @@ module Google
     # Defines constants and methods related to configuration
     module Configuration
       # An array of valid keys in the options hash when configuring an {Google::Maps::API}
-      VALID_OPTIONS_KEYS = [:end_point, :format, :api_key, :default_language, :place_text_search_service,
-                            :place_nearby_search_service, :required_keys, :place_details_service, :default_params, :exponential_backoff, :exponential_backoff_max_retries].freeze
+      VALID_OPTIONS_KEYS = [:end_point, :format, :excludes_format, :api_key, :default_language, :place_text_search_service, :place_photo_service,
+                            :place_nearby_search_service, :required_keys, :place_details_service, :default_params, 
+                            :exponential_backoff, :exponential_backoff_max_retries].freeze
 
       API_KEY = 'api_key'.freeze
 
@@ -21,6 +22,7 @@ module Google
       DEFAULT_PLACE_TEXT_SEARCH_SERVICE = 'place/textsearch'.freeze
       DEFAULT_PLACE_NEARBY_SEARCH_SERVICE = 'place/nearbysearch'.freeze
       DEFAULT_PLACE_DETAILS_SERVICE = 'place/details'.freeze
+      DEFAULT_PLACE_PHOTO_SERVICE = 'place/photo'.freeze
 
       # default format
       DEFAULT_FORMAT = 'json'.freeze
@@ -28,11 +30,20 @@ module Google
       # default language
       DEFAULT_LANGUAGE = :en
 
-      REQUIRED_KEYS = {
+      # default required keys per service
+      DEFAULT_REQUIRED_KEYS = {
         place_text_search_service: [
           :query
+        ],
+        place_photo_service: [
+          :photo_reference,
+          :maxwidth
         ]
       }.freeze
+
+      # excludes format services
+      DEFAULT_EXCLUDES_FORMAT = [:place_photo_service]
+
 
       # @private
       attr_accessor(*VALID_OPTIONS_KEYS)
@@ -66,8 +77,10 @@ module Google
         self.place_text_search_service = DEFAULT_PLACE_TEXT_SEARCH_SERVICE
         self.place_nearby_search_service = DEFAULT_PLACE_NEARBY_SEARCH_SERVICE
         self.place_details_service = DEFAULT_PLACE_DETAILS_SERVICE
+        self.place_photo_service = DEFAULT_PLACE_PHOTO_SERVICE
         self.default_language = DEFAULT_LANGUAGE
-        self.required_keys = REQUIRED_KEYS
+        self.required_keys = DEFAULT_REQUIRED_KEYS
+        self.excludes_format = DEFAULT_EXCLUDES_FORMAT
         self.exponential_backoff = DEFAULT_EXPONENTIAL_BACKOFF_ENABLED
         self.exponential_backoff_max_retries = DEFAULT_EXPONENTIAL_BACKOFF_MAX_RETRIES
         self.api_key = nil

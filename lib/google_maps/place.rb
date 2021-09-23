@@ -8,6 +8,9 @@ module Google
       def self.text_search(parameters = {})
         API.query(:place_text_search_service, parameters)
       end
+      def self.photo_url(parameters = {})
+        API.url(:place_photo_service, parameters)
+      end
     end
   end
 end
