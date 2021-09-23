@@ -34,7 +34,7 @@ Endpoints for authentication and token management:
 
   ```bash
   {
-    data: [array of google place objects]
+    data: [PlaceObject]
     next_page_token: "token for pagination"
   }
   ```

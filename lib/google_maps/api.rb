@@ -28,8 +28,9 @@ module Google
         private
 
         def handle_required_keys(service, args)
+          
           required_keys = Google::Maps.required_keys[service]
-
+          
           if required_keys
             missing_keys = required_keys - args.symbolize_keys.filter { |_k, v| v.present? }.keys
             if missing_keys.length.positive?
@@ -37,19 +38,16 @@ module Google
                     "Missing required parameters `#{missing_keys.join(',')}`"
             end
           end
-        end
 
-        def prepare_request(url)
-          uri = URI(url)
-          https = Net::HTTP.new(uri.host, uri.port)
-          https.use_ssl = true
-          Net::HTTP::Get.new(uri)
         end
 
         def response(url)
           retries = 0
           begin
-            request = prepare_request(url)
+            uri = URI(url)
+            https = Net::HTTP.new(uri.host, uri.port)
+            https.use_ssl = true
+            request = Net::HTTP::Get.new(uri)
             response = https.request(request)
             result = Oj.load(response.body)
           rescue StandardError => e
