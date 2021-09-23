@@ -28,7 +28,7 @@ Endpoints for authentication and token management:
 
 ### Search
 
-- **POST /search endpoint** requires authentication and accepts parameters :query, :location, :pagetoken, :sort_by_ratings
+- **POST /search** endpoint requires authentication and accepts parameters :query, :location, :pagetoken, :sort_by_ratings
 - **:location** format is "{latitude},{longitude}" mirroring format of [Google Place API](https://developers.google.com/maps/documentation/places/web-service/search-text)
 - **:pagetoken** provided in response as :next_page_token for pagination thru google place results
 - **:sort_by_ratings** value can be either `asc` or `desc` for results sorted by ratings
@@ -72,7 +72,7 @@ Endpoints for authentication and token management:
 
 ### Favorite Places
 
-- **POST /favorite_places endpoint** requires authentication and accepts :favorite_place object with :place_id from search response
+- **POST /favorite_places** endpoint requires authentication and accepts :favorite_place object with :place_id from search response
 
   #### Request Data
 
@@ -84,7 +84,7 @@ Endpoints for authentication and token management:
   }
   ```
 
-- **GET /favorite_places endpoint** requires authentication and accepts parameters :items and :page for pagination using [Pagy](https://ddnexus.github.io/pagy/how-to#quick-start&gsc.tab=0)
+- **GET /favorite_places** endpoint requires authentication and accepts parameters :items and :page for pagination using [Pagy](https://ddnexus.github.io/pagy/how-to#quick-start&gsc.tab=0)
 
   #### Response Data
 
@@ -98,7 +98,7 @@ Endpoints for authentication and token management:
   }
   ```
 
-- **DELETE /favorite_places/:place_id endpoint** requires authentication and accepts parameter :place_id to unfavorite place (same as place_id from google response)
+- **DELETE /favorite_places/:place_id** endpoint requires authentication and accepts parameter :place_id to unfavorite place (same as place_id from google response)
 
 ## Multi container architecture
 
