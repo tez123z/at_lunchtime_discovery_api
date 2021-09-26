@@ -23,36 +23,39 @@ class FavoritePlace < ApplicationRecord
 
   private
 
-    def existing_favorite_place_with_data
-      existing_place_with_date = FavoritePlace.where(place_id: place_id).where.not(data: nil).first.data rescue nil
+  def existing_favorite_place_with_data
+    existing_place_with_date = begin
+      FavoritePlace.where(place_id: place_id).where.not(data: nil).first.data
+    rescue StandardError
+      nil
     end
+  end
 
-    def google_place
-      Google::Maps::Place.details({ place_id: place_id })['result']
+  def google_place
+    Google::Maps::Place.details({ place_id: place_id })['result']
+  end
+
+  def serialized_google_place
+    GoogleSerializer::Place.new(google_place).serializable_hash(include: { photos: { methods: :photo_url } })
+  end
+
+  def queue_update_job
+    FavoritePlacesUpdateJob.perform_later self
+  end
+
+  def favorite_cache_key
+    @favorite_cache_key ||= FavoritePlace.cache_key_from_place_id_and_user_id(place_id, user_id)
+  end
+
+  def add_cache
+    Rails.cache.fetch(FavoritePlace.cache_key_from_place_id_and_user_id(place_id, user_id)) do
+      true
     end
+  end
 
-    def serialized_google_place
-      GoogleSerializer::Place.new(google_place).serializable_hash(include: { photos: { methods: :photo_url }})
-    end
+  def remove_cache
+    delete_attempts = 0
 
-    def queue_update_job
-      FavoritePlacesUpdateJob.perform_later self
-    end
-
-    def favorite_cache_key
-      @favorite_cache_key ||= FavoritePlace.cache_key_from_place_id_and_user_id(place_id, user_id)
-    end
-
-    def add_cache
-      Rails.cache.fetch(FavoritePlace.cache_key_from_place_id_and_user_id(place_id, user_id)) do
-        true
-      end
-    end
-
-    def remove_cache
-      delete_attempts = 0
-
-      Rails.cache.delete(favorite_cache_key) until Rails.cache.fetch(favorite_cache_key).nil? || delete_attempts > 2
-    end
-
+    Rails.cache.delete(favorite_cache_key) until Rails.cache.fetch(favorite_cache_key).nil? || delete_attempts > 2
+  end
 end

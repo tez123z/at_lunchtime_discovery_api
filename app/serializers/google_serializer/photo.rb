@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module GoogleSerializer
   class Photo
     include ActiveModel::Serializers::JSON
@@ -17,6 +18,5 @@ module GoogleSerializer
     def photo_url
       Google::Maps::Place.photo_url({ photo_reference: photo_reference, maxwidth: 400 })
     end
-
   end
 end

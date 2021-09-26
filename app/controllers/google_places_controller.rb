@@ -4,16 +4,14 @@ class GooglePlacesController < ApplicationController
   before_action :authenticate_user!
 
   def search
-    
     result = GoogleServices::Place::TextSearch.call(search_params)
 
     if result.success?
       @results, @next_page_token = result.payload
-      render json: {data: sorted_places, next_page_token: next_page_token }, status: :ok
+      render json: { data: sorted_places, next_page_token: next_page_token }, status: :ok
     else
       render json: result.errors, status: :unprocessable_entity
     end
-
   end
 
   private
@@ -21,7 +19,7 @@ class GooglePlacesController < ApplicationController
   attr_accessor :results, :next_page_token
 
   def places
-    GoogleSerializer::Places.new(results,current_user.id).results
+    GoogleSerializer::Places.new(results, current_user.id).results
   end
 
   def sorted_places
