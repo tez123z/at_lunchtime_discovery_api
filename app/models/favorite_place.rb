@@ -2,6 +2,8 @@
 
 class FavoritePlace < ApplicationRecord
   belongs_to :user
+  belongs_to :place
+  
   validates :place_id, presence: true, uniqueness: { scope: :user_id }
 
   after_create :queue_update_job
