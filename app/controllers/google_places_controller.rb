@@ -39,7 +39,7 @@ class GooglePlacesController < ApplicationController
   end
 
   def search_params
-    params.permit(:query, :location, :radius, :sort_by_ratings, :pagetoken)
+    params.permit(:query, :location, :radius, :pagetoken)
   end
 
   def sorting_param

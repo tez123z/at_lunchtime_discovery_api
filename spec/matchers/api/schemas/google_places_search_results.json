@@ -41,10 +41,10 @@
             "type": "string"
           },
           "price_level": {
-            "type": "number"
+            "type": ["number","null"]
           },
           "rating": {
-            "type": "number"
+            "type": ["number","null"]
           },
           "user_ratings_total": {
             "type": "number"
